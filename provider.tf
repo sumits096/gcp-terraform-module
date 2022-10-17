@@ -23,7 +23,7 @@ provider "google-beta" {
   zone        = var.zone
 }
 
-provider "google" {
-  alias        = "impersonated"
-  access_token = data.google_service_account_access_token.sa_access_token.access_token
-}
+# provider "google" {
+#   alias        = "impersonated"
+#   access_token = data.google_service_account_access_token.sa_access_token.access_token
+# }
