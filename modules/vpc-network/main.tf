@@ -70,6 +70,7 @@ resource "google_compute_address" "gcp_compute_address" {
 
 # Cloud NAT gateway configuration
 resource "google_compute_router_nat" "router_nat" {
+  for_each = var.vpc_subnetworks
   name     = var.router_nat_name
   provider = google-beta
   region   = var.network_region
