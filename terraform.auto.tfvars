@@ -12,11 +12,11 @@ cloud_run_region            = "us-central1"
 # Network peering variables
 #----------------------------------------------
 # VPC network variables
-network_name            = "connector-msdynamics-vpc"
+network_name            = "connector-msdynamics-vpc-test"
 auto_create_subnetworks = false
 firewall_rule_name      = "allow-tcp-icmp"
 vpc_subnetworks = {
-  "connector-msdynamics-subnetwork" : { "ip_cidr_range" : "172.16.1.0/28", "region" : "us-central1" }
+  "connector-msdynamics-subnetwork-test" : { "ip_cidr_range" : "172.16.1.0/28", "region" : "us-central1" }
 }
 vpc_access_name      = "msdynamics-cloudrun-conn"
 compute_address_name = "msdynamics-cloudrun-static-ip-addr"
