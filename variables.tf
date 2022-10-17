@@ -3,8 +3,6 @@
 # GCP account variables
 #----------------------------------------------
 variable "service_account_credentials" {}
-variable "service_account_default" {}
-variable "service_account_cloudbuild" {}
 variable "project_id" {}
 variable "region" {}
 variable "zone" {}

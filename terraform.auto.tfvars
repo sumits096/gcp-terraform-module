@@ -4,8 +4,6 @@
 #----------------------------------------------
 service_account_credentials = ""
 project_id                  = "global-connectors-b72b"
-service_account_default     = ""
-service_account_cloudbuild  = ""
 region                      = "us-central1"
 zone                        = "us-central1-a"
 cloud_run_region            = "us-central1"
