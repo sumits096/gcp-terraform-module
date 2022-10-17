@@ -38,6 +38,7 @@ resource "google_project_service" "vpc_access_service" {
 }
 
 resource "google_vpc_access_connector" "vpc_access_connector" {
+  for_each = var.vpc_subnetworks
   provider = google-beta
   name     = var.vpc_access_name
 
@@ -62,9 +63,10 @@ resource "google_compute_router" "router" {
 
 # Reserve a static IP address
 resource "google_compute_address" "gcp_compute_address" {
+  for_each = var.vpc_subnetworks
   provider = google-beta
   name     = var.compute_address_name
-  region   = google_compute_subnetwork.vpc_subnetwork[each.key].region
+  region   = var.network_region
 }
 
 # Cloud NAT gateway configuration
