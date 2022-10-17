@@ -63,7 +63,6 @@ resource "google_compute_router" "router" {
 
 # Reserve a static IP address
 resource "google_compute_address" "gcp_compute_address" {
-  for_each = var.vpc_subnetworks
   provider = google-beta
   name     = var.compute_address_name
   region   = var.network_region
