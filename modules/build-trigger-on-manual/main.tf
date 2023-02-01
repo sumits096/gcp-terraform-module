@@ -1,4 +1,5 @@
-resource "google_cloudbuild_trigger" "terraform-trigger_on_pubsub" {
+resource "google_cloudbuild_trigger" "terraform-trigger_on_manual" {
+  count       = 0
   name        = var.build_trigger_name
   description = var.build_trigger_description
 

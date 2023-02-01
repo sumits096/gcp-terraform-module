@@ -28,3 +28,12 @@ variable "atlas_peering_name" {}
 variable "atlas_cidr_block" {}
 variable "atlas_cluster_container_id" {}
 variable "atlas_cluster_provider" {}
+
+# ----------------------------------------------------------------------------
+# MODULE CONFIGURATION PARAMETERS
+# ----------------------------------------------------------------------------
+variable "module_enabled" {
+  type        = bool
+  description = "(Optional) Whether to create resources within the module or not."
+  default     = false
+}

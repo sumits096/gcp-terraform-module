@@ -4,26 +4,21 @@
 #----------------------------------------------
 service_account_credentials = ""
 project_id                  = "connectors-playground"
+service_account_default     = ""
+service_account_cloudbuild  = ""
 region                      = "us-central1"
 zone                        = "us-central1-a"
-cloud_run_region            = "us-central1"
 
 #----------------------------------------------
-# Network peering variables
+# Cloud task queue variable
 #----------------------------------------------
-# VPC network variables
-network_name            = "connector-msdynamics-vpc-test"
-auto_create_subnetworks = false
-firewall_rule_name      = "allow-tcp-icmp"
-vpc_subnetworks = {
-  "connector-msdynamics-subnetwork-test" : { "ip_cidr_range" : "172.16.2.0/28", "region" : "us-central1" }
-}
-vpc_access_name      = "msdynamics-cloudrun-conn"
-compute_address_name = "msdynamics-cloudrun-static-ip-addr"
-router_name          = "msdynamics-router"
-router_nat_name      = "msdynamics-nat-gateway"
-
-# VPC network peering variables
-gcp_peering_name   = "connector-msdynamics-vpc-mongodb"
-atlas_peering_name = "connector-msdynamics-vpc-gcp"
-atlas_cidr_block   = "192.168.192.0/8"
+task_name                 = "ovation-webhook-queue"
+task_location             = "us-central1"
+max_concurrent_dispatches = 3
+max_dispatches_per_second = 2
+max_attempts              = 5
+max_retry_duration        = "4s"
+max_backoff               = "3s"
+min_backoff               = "2s"
+max_doublings             = 1
+sampling_ratio            = 0.9

@@ -1,5 +1,6 @@
 # Create the atlas mongo peer
 resource "mongodbatlas_network_peering" "peer_mongo_network" {
+  count            = 0
   project_id       = var.atlas_project_id
   network_name     = var.atlas_peering_name
   atlas_cidr_block = var.atlas_cidr_block
@@ -10,6 +11,7 @@ resource "mongodbatlas_network_peering" "peer_mongo_network" {
 
 # Create the GCP peer
 resource "google_compute_network_peering" "peer_gcp_network" {
+  count        = 0
   name         = var.gcp_peering_name
   network      = var.gcp_vpc_network_self_link
   peer_network = "https://www.googleapis.com/compute/v1/projects/${mongodbatlas_network_peering.peer_mongo_network.atlas_gcp_project_id}/global/networks/${mongodbatlas_network_peering.peer_mongo_network.atlas_vpc_name}"

@@ -1,5 +1,6 @@
 # VPC network
 resource "google_compute_network" "vpc_network" {
+  provider                = google-beta
   name                    = var.network_name
   auto_create_subnetworks = var.auto_create_subnetworks
   mtu                     = 1460
@@ -8,6 +9,7 @@ resource "google_compute_network" "vpc_network" {
 # VPC subnet
 resource "google_compute_subnetwork" "vpc_subnetwork" {
   for_each      = var.vpc_subnetworks
+  provider      = google-beta
   name          = each.key
   ip_cidr_range = each.value.ip_cidr_range
   region        = each.value.region
@@ -41,6 +43,7 @@ resource "google_vpc_access_connector" "vpc_access_connector" {
   for_each = var.vpc_subnetworks
   provider = google-beta
   name     = var.vpc_access_name
+  region   = var.network_region
 
   subnet {
     name = google_compute_subnetwork.vpc_subnetwork[each.key].name
@@ -71,8 +74,8 @@ resource "google_compute_address" "gcp_compute_address" {
 # Cloud NAT gateway configuration
 resource "google_compute_router_nat" "router_nat" {
   for_each = var.vpc_subnetworks
-  name     = var.router_nat_name
   provider = google-beta
+  name     = var.router_nat_name
   region   = var.network_region
   router   = google_compute_router.router.name
 
