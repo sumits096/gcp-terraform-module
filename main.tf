@@ -1,12 +1,13 @@
 #----------------------------------------------
 # Create cloud task queue permission
 #----------------------------------------------
-module "connector_cloud_task_permission" {
+module "connector_cloud_task_queue_permission" {
   source                      = "./modules/cloud-task-permission"
   service_account_credentials = var.service_account_credentials
   project_id                  = var.project_id
   region                      = var.region
   zone                        = var.zone
+  cloud_tasks_queue_name      = var.task_name
 }
 
 #----------------------------------------------
