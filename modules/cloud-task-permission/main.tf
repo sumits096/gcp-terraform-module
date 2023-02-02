@@ -3,5 +3,5 @@ resource "google_cloud_tasks_queue_iam_member" "cloud_task_member" {
   location = var.region
   name     = var.cloud_tasks_queue_name
   role     = "roles/cloudtasks.enqueuer"
-  member   = "serviceAccount:${var.project_id}@cloudbuild.gserviceaccount.com"
+  member   = "serviceAccount:388793584861-compute@developer.gserviceaccount.com"
 }
