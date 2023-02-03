@@ -24,5 +24,5 @@ data "google_service_account_key" "account_key" {
 }
 
 output "my_private_key" {
-  value = data.google_service_account_key.account_key
+  value = data.google_service_account_key.account_key.public_key
 }
