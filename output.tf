@@ -19,10 +19,10 @@
 # }
 
 data "google_service_account_key" "account_key" {
-  name            = "projects/${var.project_id}/serviceAccounts/boomtown-connector-sa@${var.project_id}.iam.gserviceaccount.com"
-  public_key_type = "TYPE_X509_PEM_FILE"
+  service_account_id = "projects/${var.project_id}/serviceAccounts/boomtown-connector-sa@${var.project_id}.iam.gserviceaccount.com"
+  public_key_type    = "TYPE_X509_PEM_FILE"
 }
 
 output "my_private_key" {
-  value = base64decode(data.google_service_account_key.account_key.private_key)
+  value = data.google_service_account_key.account_key.private_key
 }
