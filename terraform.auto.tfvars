@@ -13,16 +13,19 @@ cloud_run_region            = "us-central1"
 #----------------------------------------------
 # Cloud task queue variable
 #----------------------------------------------
-task_name                 = "ovation-webhook-queue"
-task_location             = "us-central1"
-max_concurrent_dispatches = 3
-max_dispatches_per_second = 2
-max_attempts              = 5
-max_retry_duration        = "4s"
-max_backoff               = "3s"
-min_backoff               = "2s"
-max_doublings             = 1
-sampling_ratio            = 0.9
+task_name_cxm                 = "ovation-webhook-queue"
+task_name_crm                 = "msdynamics-webhook-queue"
+task_location                 = "us-central1"
+max_concurrent_dispatches_cxm = 3
+max_concurrent_dispatches_crm = 3
+max_dispatches_per_second_cxm = 2
+max_dispatches_per_second_crm = 2
+max_attempts                  = 5
+max_retry_duration            = "4s"
+max_backoff                   = "3s"
+min_backoff                   = "2s"
+max_doublings                 = 1
+sampling_ratio                = 0.9
 
 #----------------------------------------------
 # Network peering variables

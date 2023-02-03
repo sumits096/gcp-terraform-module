@@ -13,10 +13,13 @@ variable "cloud_run_region" {}
 #----------------------------------------------
 # Cloud task queue variable
 #----------------------------------------------
-variable "task_name" {}
+variable "task_name_cxm" {}
+variable "task_name_crm" {}
 variable "task_location" {}
-variable "max_concurrent_dispatches" {}
-variable "max_dispatches_per_second" {}
+variable "max_concurrent_dispatches_cxm" {}
+variable "max_concurrent_dispatches_crm" {}
+variable "max_dispatches_per_second_cxm" {}
+variable "max_dispatches_per_second_crm" {}
 variable "max_attempts" {}
 variable "max_retry_duration" {}
 variable "max_backoff" {}
