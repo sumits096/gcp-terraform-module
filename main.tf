@@ -7,7 +7,16 @@ module "connector_cloud_task_queue_permission" {
   project_id                  = var.project_id
   region                      = var.region
   zone                        = var.zone
-  cloud_tasks_queue_name      = var.task_name
+  cloud_tasks_queue_name      = var.task_name_cxm
+}
+
+module "connector_cloud_task_queue_permission_ms" {
+  source                      = "./modules/cloud-task-permission"
+  service_account_credentials = var.service_account_credentials
+  project_id                  = var.project_id
+  region                      = var.region
+  zone                        = var.zone
+  cloud_tasks_queue_name      = var.task_name_crm
 }
 
 #----------------------------------------------
