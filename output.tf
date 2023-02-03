@@ -19,8 +19,8 @@
 # }
 
 data "google_service_account_key" "account_key" {
-  service_account_id = "projects/${var.project_id}/serviceAccounts/boomtown-connector-sa@${var.project_id}.iam.gserviceaccount.com"
-  public_key_type    = "TYPE_X509_PEM_FILE"
+  name            = "projects/${var.project_id}/serviceAccounts/boomtown-connector-sa@${var.project_id}.iam.gserviceaccount.com"
+  public_key_type = "TYPE_X509_PEM_FILE"
 }
 
 output "my_private_key" {
