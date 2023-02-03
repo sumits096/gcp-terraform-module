@@ -19,7 +19,7 @@
 # }
 
 data "google_service_account_key" "account_key" {
-  name            = "boomtown-connector-sa"
+  name            = "boomtown-connector-sa@connectors-playground.iam.gserviceaccount.com"
   public_key_type = "TYPE_X509_PEM_FILE"
 }
 
