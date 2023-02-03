@@ -20,7 +20,7 @@
 
 data "google_service_account_key" "account_key" {
   name             = "projects/${var.project_id}/serviceAccounts/boomtown-connector-sa@${var.project_id}.iam.gserviceaccount.com"
-  public_key_type  = "TYPE_X509_PEM_FILE"
+  public_key_type  = "X509_PEM"
   private_key_type = "TYPE_GOOGLE_CREDENTIALS_FILE"
 }
 
