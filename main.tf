@@ -30,7 +30,7 @@ module "connector_cloud_run_service_account" {
 }
 
 module "connector_cloud_run_service_account_iam" {
-  source                      = "./modules/cloud-service-account"
+  source                      = "./modules/service-account-iam-member"
   service_account_credentials = var.service_account_credentials
   project_id                  = var.project_id
   region                      = var.region
