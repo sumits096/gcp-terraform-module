@@ -11,6 +11,22 @@ zone                        = "us-central1-a"
 cloud_run_region            = "us-central1"
 
 #----------------------------------------------
+# Service Account variables
+#----------------------------------------------
+account_id   = "cloud-run-service-account"
+display_name = "Cloud run-task service account"
+
+#----------------------------------------------
+# Service Account iam member roles
+#----------------------------------------------
+service_account_email = ""
+member_roles = [
+  "roles/run.admin",
+  "roles/cloudtasks.enqueuer",
+  "roles/iam.serviceAccountUser"
+]
+
+#----------------------------------------------
 # Cloud task queue variable
 #----------------------------------------------
 task_name_cxm                 = "ovation-webhook-queue"

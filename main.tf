@@ -19,6 +19,26 @@ module "connector_cloud_task_queue_permission_ms" {
   cloud_tasks_queue_name      = var.task_name_crm
 }
 
+module "connector_cloud_run_service_account" {
+  source                      = "./modules/cloud-service-account"
+  service_account_credentials = var.service_account_credentials
+  project_id                  = var.project_id
+  region                      = var.region
+  zone                        = var.zone
+  account_id                  = var.account_id
+  display_name                = var.display_name
+}
+
+module "connector_cloud_run_service_account_iam" {
+  source                      = "./modules/cloud-service-account"
+  service_account_credentials = var.service_account_credentials
+  project_id                  = var.project_id
+  region                      = var.region
+  zone                        = var.zone
+  service_account_email       = module.connector_cloud_run_service_account.sa_email
+  member_roles                = var.member_roles
+}
+
 #----------------------------------------------
 # Create cloud task queue
 #----------------------------------------------

@@ -11,6 +11,18 @@ variable "zone" {}
 variable "cloud_run_region" {}
 
 #----------------------------------------------
+# Service Account variables
+#----------------------------------------------
+variable "account_id" {}
+variable "display_name" {}
+
+#----------------------------------------------
+# Service Account iam member roles
+#----------------------------------------------
+variable "service_account_email" {}
+variable "member_roles" {}
+
+#----------------------------------------------
 # Cloud task queue variable
 #----------------------------------------------
 variable "task_name_cxm" {}
