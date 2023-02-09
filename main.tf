@@ -35,7 +35,7 @@ module "connector_cloud_run_service_account_iam" {
   project_id                  = var.project_id
   region                      = var.region
   zone                        = var.zone
-  service_account_email       = module.connector_cloud_run_service_account.sa_email
+  service_account_email       = module.connector_cloud_run_service_account.service_account_email
   member_roles                = var.member_roles
 }
 
