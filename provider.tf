@@ -6,10 +6,6 @@ terraform {
     google-beta = {
       source = "hashicorp/google-beta"
     }
-    azuread = {
-      source  = "hashicorp/azuread"
-      version = "~> 2.26.1"
-    }
   }
 }
 
@@ -26,13 +22,6 @@ provider "google-beta" {
   region      = var.region
   zone        = var.zone
 }
-
-provider "azuread" {
-  client_id     = var.azure_client_id
-  client_secret = var.azure_client_secret
-  tenant_id     = var.azure_tenant_id
-}
-
 
 # provider "google" {
 #   alias        = "impersonated"
