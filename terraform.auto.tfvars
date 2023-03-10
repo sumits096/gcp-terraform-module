@@ -73,4 +73,4 @@ azure_tenant_id     = "99c32bdd-18fa-4f18-9dc8-083e6d55e848"
 
 # Azure application variables
 azure_app_display_name = "ms-dynamics-test-app"
-redirect_uris          = ["https://localhost"]
+redirect_uris          = ["https://localhost:8081/"]
