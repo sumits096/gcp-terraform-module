@@ -72,5 +72,5 @@ azure_client_secret = "lqr8Q~mCCjXkKOEFbcBuReIGlV-a3BIdkxORBcho"
 azure_tenant_id     = "99c32bdd-18fa-4f18-9dc8-083e6d55e848"
 
 # Azure application variables
-azure_app_display_name = ""
-redirect_uris          = [""]
+azure_app_display_name = "ms-dynamics-test-app"
+redirect_uris          = ["https://localhost"]
