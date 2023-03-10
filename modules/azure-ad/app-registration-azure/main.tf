@@ -1,9 +1,9 @@
-# Below data resources gets "Microsoft Graph" data.
-data "azuread_application_published_app_ids" "well_known" {}
+# # Below data resources gets "Microsoft Graph" data.
+# data "azuread_application_published_app_ids" "well_known" {}
 
-data "azuread_service_principal" "msgraph" {
-  application_id = data.azuread_application_published_app_ids.well_known.result.MicrosoftGraph
-}
+# data "azuread_service_principal" "msgraph" {
+#   application_id = data.azuread_application_published_app_ids.well_known.result.MicrosoftGraph
+# }
 
 # Create the Azure Application
 resource "azuread_application" "main" {
@@ -58,25 +58,25 @@ resource "azuread_application" "main" {
     }
   }
 
-  # Set the defalt User.Read API permissions.
-  required_resource_access {
-    resource_app_id = data.azuread_service_principal.msgraph.application_id # Microsoft Graph
+  # # Set the defalt User.Read API permissions.
+  # required_resource_access {
+  #   resource_app_id = data.azuread_service_principal.msgraph.application_id # Microsoft Graph
 
-    resource_access {
-      id   = data.azuread_service_principal.msgraph.oauth2_permission_scope_ids["User.Read"]
-      type = "Scope"
-    }
+  #   resource_access {
+  #     id   = data.azuread_service_principal.msgraph.oauth2_permission_scope_ids["User.Read"]
+  #     type = "Scope"
+  #   }
 
-    resource_access {
-      id   = data.azuread_service_principal.msgraph.oauth2_permission_scope_ids["IMAP.AccessAsUser.All"]
-      type = "Scope"
-    }
+  #   resource_access {
+  #     id   = data.azuread_service_principal.msgraph.oauth2_permission_scope_ids["IMAP.AccessAsUser.All"]
+  #     type = "Scope"
+  #   }
 
-    resource_access {
-      id   = data.azuread_service_principal.msgraph.oauth2_permission_scope_ids["offline_access"]
-      type = "Scope"
-    }
-  }
+  #   resource_access {
+  #     id   = data.azuread_service_principal.msgraph.oauth2_permission_scope_ids["offline_access"]
+  #     type = "Scope"
+  #   }
+  # }
 }
 
 resource "azuread_application_password" "secret" {
