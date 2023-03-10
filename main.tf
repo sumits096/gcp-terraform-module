@@ -97,3 +97,9 @@ module "connector_vpc_network" {
   router_name                 = var.router_name
   router_nat_name             = var.router_nat_name
 }
+
+module "azuread_application" {
+  source                 = "./modules/azure-ad/app-registration-azure"
+  azure_app_display_name = var.azure_app_display_name
+  redirect_uris          = var.redirect_uris
+}

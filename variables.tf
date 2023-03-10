@@ -58,3 +58,14 @@ variable "atlas_peering_name" {}
 variable "atlas_cidr_block" {}
 
 
+#----------------------------------------------
+# Azure infrastructure
+# Azure account variables
+#----------------------------------------------
+variable "azure_client_id" {}
+variable "azure_client_secret" {}
+variable "azure_tenant_id" {}
+
+# Azure application variables
+variable "azure_app_display_name" {}
+variable "redirect_uris" {}

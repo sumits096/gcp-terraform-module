@@ -62,3 +62,15 @@ router_nat_name      = "msdynamics-nat-gateway"
 gcp_peering_name   = "connector-msdynamics-vpc-mongodb"
 atlas_peering_name = "connector-msdynamics-vpc-gcp"
 atlas_cidr_block   = "192.168.192.0/8"
+
+#----------------------------------------------
+# Aure infrastructure
+# Aure account variables
+#----------------------------------------------
+azure_client_id     = "ba9a9510-8f7d-46f8-a229-8134d7e0cab7"
+azure_client_secret = "7b53241b-3fa5-4b2c-ba4c-3a981a1a51c7"
+azure_tenant_id     = "99c32bdd-18fa-4f18-9dc8-083e6d55e848"
+
+# Azure application variables
+azure_app_display_name = ""
+redirect_uris          = [""]
