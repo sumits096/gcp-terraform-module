@@ -100,6 +100,9 @@
 
 module "azuread_application" {
   source                 = "./modules/azure-ad/app-registration-azure"
+  azure_client_id        = var.azure_client_id
+  azure_client_secret    = var.azure_client_secret
+  azure_tenant_id        = var.azure_tenant_id
   azure_app_display_name = var.azure_app_display_name
   redirect_uris          = var.redirect_uris
 }
