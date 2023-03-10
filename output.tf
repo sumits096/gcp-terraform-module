@@ -26,6 +26,6 @@
 #   value = data.google_service_account_key.account_key.private_key
 # }
 
-# output "sa_email" {
-#   value = module.connector_cloud_run_service_account.service_account_email
-# }
+output "sa_email" {
+  value = module.connector_cloud_run_service_account.service_account_email
+}
