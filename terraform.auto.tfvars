@@ -67,9 +67,9 @@ atlas_cidr_block   = "192.168.192.0/8"
 # Aure infrastructure
 # Aure account variables
 #----------------------------------------------
-azure_client_id     = "ba9a9510-8f7d-46f8-a229-8134d7e0cab7"
-azure_client_secret = "lqr8Q~mCCjXkKOEFbcBuReIGlV-a3BIdkxORBcho"
-azure_tenant_id     = "99c32bdd-18fa-4f18-9dc8-083e6d55e848"
+azure_client_id     = ""
+azure_client_secret = ""
+azure_tenant_id     = ""
 
 # Azure application variables
 azure_app_display_name = "ms-dynamics-test-app"
