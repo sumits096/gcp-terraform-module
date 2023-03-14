@@ -115,3 +115,9 @@ resource "azuread_service_principal_delegated_permission_grant" "main" {
   resource_service_principal_object_id = data.azuread_service_principal.msgraph.object_id
   claim_values                         = ["User.Read"]
 }
+
+resource "azuread_service_principal_delegated_permission_grant" "main" {
+  service_principal_object_id          = azuread_service_principal.user.object_id
+  resource_service_principal_object_id = data.azuread_service_principal.d365bc.object_id
+  claim_values                         = ["user_impersonation"]
+}
