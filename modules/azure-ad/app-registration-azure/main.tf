@@ -93,7 +93,7 @@ resource "azuread_application" "main" {
   required_resource_access {
     resource_app_id = data.azuread_service_principal.d365bc.application_id
     resource_access {
-      id   = local.USER_IMPERSONATION_PERMISSION
+      id   = data.azuread_service_principal.d365bc.oauth2_permission_scope_ids["User.Impersonation"]
       type = "Scope"
     }
   }
