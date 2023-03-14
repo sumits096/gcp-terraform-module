@@ -105,13 +105,13 @@ resource "azuread_application_password" "secret" {
 }
 
 # Create a Service Principal for the App Registration (required)
-#resource "azuread_service_principal" "user" {
-#  application_id = azuread_application.main.application_id
-#}
+resource "azuread_service_principal" "user" {
+  application_id = azuread_application.main.application_id
+}
 
 # Gives admin consent on the User.Read permission.
-#resource "azuread_service_principal_delegated_permission_grant" "main" {
-#  service_principal_object_id          = azuread_service_principal.user.object_id
-#  resource_service_principal_object_id = data.azuread_service_principal.msgraph.object_id
-#  claim_values                         = ["IMAP.AccessAsUser.All", "offline_access", "User.Read"]
-#}
+resource "azuread_service_principal_delegated_permission_grant" "main" {
+  service_principal_object_id          = azuread_service_principal.user.object_id
+  resource_service_principal_object_id = data.azuread_service_principal.msgraph.object_id
+  claim_values                         = ["User.Read"]
+}
