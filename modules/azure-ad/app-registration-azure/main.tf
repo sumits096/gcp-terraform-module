@@ -5,12 +5,16 @@
 #   application_id = data.azuread_application_published_app_ids.well_known.result.MicrosoftGraph
 # }
 
-data "azuread_service_principal" "graph-api" {
+data "azuread_service_principal" "msgraph" {
   display_name = "Microsoft Graph"
 }
 
 data "azuread_service_principal" "d365bc" {
-  display_name = "Dynamics 365 Business Central"
+  application_id = "996def3d-b36c-4153-8607-a6fd3c01b89f"
+}
+
+locals {
+  USER_IMPERSONATION_PERMISSION = matchkeys(data.azuread_service_principal.d365bc.oauth2_permissions.*.id, data.azuread_service_principal.d365bc.oauth2_permissions.*.value, list("user_impersonation"))[0]
 }
 
 # Create the Azure Application
@@ -66,7 +70,7 @@ resource "azuread_application" "main" {
     }
   }
 
-# Set the defalt User.Read API permissions.
+  # Set the defalt User.Read API permissions.
   required_resource_access {
     resource_app_id = data.azuread_service_principal.msgraph.application_id # Microsoft Graph
 
@@ -111,4 +115,3 @@ resource "azuread_application_password" "secret" {
 #  resource_service_principal_object_id = data.azuread_service_principal.msgraph.object_id
 #  claim_values                         = ["IMAP.AccessAsUser.All", "offline_access", "User.Read"]
 #}
-
