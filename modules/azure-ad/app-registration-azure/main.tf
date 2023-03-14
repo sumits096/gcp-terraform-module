@@ -5,6 +5,14 @@
 #   application_id = data.azuread_application_published_app_ids.well_known.result.MicrosoftGraph
 # }
 
+data "azuread_service_principal" "graph-api" {
+  display_name = "Microsoft Graph"
+}
+
+data "azuread_service_principal" "d365bc" {
+  display_name = "Dynamics 365 Business Central"
+}
+
 # Create the Azure Application
 resource "azuread_application" "main" {
   display_name            = var.azure_app_display_name
