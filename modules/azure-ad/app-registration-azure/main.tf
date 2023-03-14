@@ -13,9 +13,9 @@ data "azuread_service_principal" "d365bc" {
   application_id = "996def3d-b36c-4153-8607-a6fd3c01b89f"
 }
 
-locals {
-  USER_IMPERSONATION_PERMISSION = matchkeys(data.azuread_service_principal.d365bc.oauth2_permissions.*.id, data.azuread_service_principal.d365bc.oauth2_permissions.*.value, list("user_impersonation"))[0]
-}
+# locals {
+#   USER_IMPERSONATION_PERMISSION = matchkeys(data.azuread_service_principal.d365bc.oauth2_permissions.*.id, data.azuread_service_principal.d365bc.oauth2_permissions.*.value, list("user_impersonation"))[0]
+# }
 
 # Create the Azure Application
 resource "azuread_application" "main" {
