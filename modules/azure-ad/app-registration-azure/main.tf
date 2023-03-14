@@ -1,17 +1,21 @@
-# Below data resources gets "Microsoft Graph" data.
-data "azuread_application_published_app_ids" "well_known" {}
+# # Below data resources gets "Microsoft Graph" data.
+# data "azuread_application_published_app_ids" "well_known" {}
+
+# data "azuread_service_principal" "msgraph" {
+#   application_id = data.azuread_application_published_app_ids.well_known.result.MicrosoftGraph
+# }
 
 data "azuread_service_principal" "msgraph" {
-  application_id = data.azuread_application_published_app_ids.well_known.result.MicrosoftGraph
-}
-
-data "azuread_service_principal" "graph-api" {
   display_name = "Microsoft Graph"
 }
 
 data "azuread_service_principal" "d365bc" {
-  display_name = "Dynamics 365 Business Central"
+  application_id = "996def3d-b36c-4153-8607-a6fd3c01b89f"
 }
+
+# locals {
+#   USER_IMPERSONATION_PERMISSION = matchkeys(data.azuread_service_principal.d365bc.oauth2_permissions.*.id, data.azuread_service_principal.d365bc.oauth2_permissions.*.value, list("user_impersonation"))[0]
+# }
 
 # Create the Azure Application
 resource "azuread_application" "main" {
@@ -66,16 +70,6 @@ resource "azuread_application" "main" {
     }
   }
 
-  oauth2_permissions {
-    admin_consent_description  = "Allow the application to access example on behalf of the signed-in user."
-    admin_consent_display_name = "Access example"
-    is_enabled                 = true
-    type                       = "User"
-    user_consent_description   = "Allow the application to access example on your behalf."
-    user_consent_display_name  = "Access example"
-    value                      = "user_impersonation"
-  }
-
   # Set the defalt User.Read API permissions.
   required_resource_access {
     resource_app_id = data.azuread_service_principal.msgraph.application_id # Microsoft Graph
@@ -85,30 +79,35 @@ resource "azuread_application" "main" {
       type = "Scope"
     }
 
-    resource_access {
-      id   = data.azuread_service_principal.msgraph.oauth2_permission_scope_ids["IMAP.AccessAsUser.All"]
-      type = "Scope"
-    }
+    #   resource_access {
+    #     id   = data.azuread_service_principal.msgraph.oauth2_permission_scope_ids["IMAP.AccessAsUser.All"]
+    #     type = "Scope"
+    #   }
 
+    #   resource_access {
+    #     id   = data.azuread_service_principal.msgraph.oauth2_permission_scope_ids["offline_access"]
+    #     type = "Scope"
+    #   }
+  }
+
+  required_resource_access {
+    resource_app_id = data.azuread_service_principal.d365bc.application_id
     resource_access {
-      id   = data.azuread_service_principal.msgraph.oauth2_permission_scope_ids["offline_access"]
+      id   = data.azuread_service_principal.d365bc.oauth2_permission_scope_ids["user_impersonation"]
       type = "Scope"
     }
   }
-
 }
 
-# Generete application client secrete key
 resource "azuread_application_password" "secret" {
-  display_name          = "secret-key"
   application_object_id = azuread_application.main.id
-  end_date              = "2030-01-01T01:00:00Z"
+  end_date              = "2024-01-01T01:00:00Z"
 }
 
 # Create a Service Principal for the App Registration (required)
-resource "azuread_service_principal" "user" {
-  application_id = azuread_application.main.application_id
-}
+#resource "azuread_service_principal" "user" {
+#  application_id = azuread_application.main.application_id
+#}
 
 # Gives admin consent on the User.Read permission.
 #resource "azuread_service_principal_delegated_permission_grant" "main" {
@@ -116,15 +115,3 @@ resource "azuread_service_principal" "user" {
 #  resource_service_principal_object_id = data.azuread_service_principal.msgraph.object_id
 #  claim_values                         = ["IMAP.AccessAsUser.All", "offline_access", "User.Read"]
 #}
-
-# Grant admin concent permission
-resource "azuread_application_oauth2_permission" "admin-concent" {
-  application_object_id      = azuread_application.main.id
-  admin_consent_description  = "Administer the application"
-  admin_consent_display_name = "Administer"
-  is_enabled                 = true
-  type                       = "User"
-  user_consent_description   = "Administer the application"
-  user_consent_display_name  = "Administer"
-  value                      = "administer"
-}
