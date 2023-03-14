@@ -58,25 +58,33 @@ resource "azuread_application" "main" {
     }
   }
 
-  # # Set the defalt User.Read API permissions.
-  # required_resource_access {
-  #   resource_app_id = data.azuread_service_principal.msgraph.application_id # Microsoft Graph
+# Set the defalt User.Read API permissions.
+  required_resource_access {
+    resource_app_id = data.azuread_service_principal.msgraph.application_id # Microsoft Graph
 
-  #   resource_access {
-  #     id   = data.azuread_service_principal.msgraph.oauth2_permission_scope_ids["User.Read"]
-  #     type = "Scope"
-  #   }
+    resource_access {
+      id   = data.azuread_service_principal.msgraph.oauth2_permission_scope_ids["User.Read"]
+      type = "Scope"
+    }
 
-  #   resource_access {
-  #     id   = data.azuread_service_principal.msgraph.oauth2_permission_scope_ids["IMAP.AccessAsUser.All"]
-  #     type = "Scope"
-  #   }
+    #   resource_access {
+    #     id   = data.azuread_service_principal.msgraph.oauth2_permission_scope_ids["IMAP.AccessAsUser.All"]
+    #     type = "Scope"
+    #   }
 
-  #   resource_access {
-  #     id   = data.azuread_service_principal.msgraph.oauth2_permission_scope_ids["offline_access"]
-  #     type = "Scope"
-  #   }
-  # }
+    #   resource_access {
+    #     id   = data.azuread_service_principal.msgraph.oauth2_permission_scope_ids["offline_access"]
+    #     type = "Scope"
+    #   }
+  }
+
+  required_resource_access {
+    resource_app_id = data.azuread_service_principal.d365bc.application_id
+    resource_access {
+      id   = local.USER_IMPERSONATION_PERMISSION
+      type = "Scope"
+    }
+  }
 }
 
 resource "azuread_application_password" "secret" {
