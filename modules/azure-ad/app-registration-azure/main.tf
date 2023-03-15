@@ -10,7 +10,6 @@ data "azuread_service_principal" "msgraph" {
 }
 
 data "azuread_service_principal" "dcrm" {
-  display_name = "Dynamics CRM"
   application_id = "00000007-0000-0000-c000-000000000000"
 }
 
