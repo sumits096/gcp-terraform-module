@@ -9,8 +9,9 @@ data "azuread_service_principal" "msgraph" {
   display_name = "Microsoft Graph"
 }
 
-data "azuread_service_principal" "d365bc" {
-  application_id = "996def3d-b36c-4153-8607-a6fd3c01b89f"
+data "azuread_service_principal" "dcrm" {
+  display_name = "Dynamics CRM"
+  application_id = "00000007-0000-0000-c000-000000000000"
 }
 
 # locals {
@@ -91,9 +92,9 @@ resource "azuread_application" "main" {
   }
 
   required_resource_access {
-    resource_app_id = data.azuread_service_principal.d365bc.application_id
+    resource_app_id = data.azuread_service_principal.dcrm.application_id
     resource_access {
-      id   = data.azuread_service_principal.d365bc.oauth2_permission_scope_ids["user_impersonation"]
+      id   = data.azuread_service_principal.dcrm.oauth2_permission_scope_ids["user_impersonation"]
       type = "Scope"
     }
   }
@@ -116,8 +117,8 @@ resource "azuread_service_principal_delegated_permission_grant" "main" {
   claim_values                         = ["User.Read"]
 }
 
-resource "azuread_service_principal_delegated_permission_grant" "main_d365bc" {
+resource "azuread_service_principal_delegated_permission_grant" "main_dcrm" {
   service_principal_object_id          = azuread_service_principal.user.object_id
-  resource_service_principal_object_id = data.azuread_service_principal.d365bc.object_id
+  resource_service_principal_object_id = data.azuread_service_principal.dcrm.object_id
   claim_values                         = ["user_impersonation"]
 }
