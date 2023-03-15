@@ -58,14 +58,32 @@ variable "atlas_peering_name" {}
 variable "atlas_cidr_block" {}
 
 
+# #----------------------------------------------
+# # Azure infrastructure
+# # Azure account variables
+# #----------------------------------------------
+# variable "azure_client_id" {}
+# variable "azure_client_secret" {}
+# variable "azure_tenant_id" {}
+
+# # Azure application variables
+# variable "azure_app_display_name" {}
+# variable "redirect_uris" {}
+
 #----------------------------------------------
 # Azure infrastructure
 # Azure account variables
 #----------------------------------------------
-variable "azure_client_id" {}
-variable "azure_client_secret" {}
-variable "azure_tenant_id" {}
+variable "azuread_client_id" {}
+variable "azuread_client_secret" {}
+variable "azuread_tenant_id" {}
 
 # Azure application variables
-variable "azure_app_display_name" {}
-variable "redirect_uris" {}
+variable "azuread_app_secret_display_name" {}
+variable "azuread_app_secret_end_date" {}
+variable "azuread_app_display_name_nonprod" {}
+variable "azuread_app_redirect_uris_nonprod" {}
+
+# Azure application variables for prod
+variable "azuread_app_display_name_prod" {}
+variable "azuread_app_redirect_uris_prod" {}
