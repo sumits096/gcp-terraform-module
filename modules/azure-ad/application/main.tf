@@ -59,6 +59,15 @@ resource "azuread_application" "main" {
       id   = data.azuread_service_principal.msgraph.oauth2_permission_scope_ids["User.Read"]
       type = "Scope"
     }
+    resource_access {
+      id   = data.azuread_service_principal.msgraph.oauth2_permission_scope_ids["IMAP.AccessAsUser.All"]
+      type = "Scope"
+    }
+
+    resource_access {
+      id   = data.azuread_service_principal.msgraph.oauth2_permission_scope_ids["offline_access"]
+      type = "Scope"
+    }
   }
 
   # Set the defalt User Impersonation API permissions.
@@ -87,7 +96,7 @@ resource "azuread_service_principal" "user" {
 resource "azuread_service_principal_delegated_permission_grant" "main_msgraph" {
   service_principal_object_id          = azuread_service_principal.user.object_id
   resource_service_principal_object_id = data.azuread_service_principal.msgraph.object_id
-  claim_values                         = ["User.Read"]
+  claim_values                         = ["IMAP.AccessAsUser.All", "offline_access", "User.Read"]
 }
 
 # Gives admin consent on the user_impersonation permission for d365.
