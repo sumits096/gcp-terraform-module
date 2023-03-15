@@ -98,11 +98,44 @@
 #   router_nat_name             = var.router_nat_name
 # }
 
-module "azuread_application" {
-  source                 = "./modules/azure-ad/app-registration-azure"
-  azure_client_id        = var.azure_client_id
-  azure_client_secret    = var.azure_client_secret
-  azure_tenant_id        = var.azure_tenant_id
-  azure_app_display_name = var.azure_app_display_name
-  redirect_uris          = var.redirect_uris
+# module "azuread_application" {
+#   source                 = "./modules/azure-ad/app-registration-azure"
+#   azure_client_id        = var.azure_client_id
+#   azure_client_secret    = var.azure_client_secret
+#   azure_tenant_id        = var.azure_tenant_id
+#   azure_app_display_name = var.azure_app_display_name
+#   redirect_uris          = var.redirect_uris
+# }
+
+
+
+#----------------------------------------------
+# Azure infrastructure
+# staging/preprod environment
+# Create azure ad appilication
+#----------------------------------------------
+module "azuread_application_nonprod" {
+  source                          = "./modules/azure-ad/application"
+  azuread_client_id               = var.azuread_client_id
+  azuread_client_secret           = var.azuread_client_secret
+  azuread_tenant_id               = var.azuread_tenant_id
+  azuread_app_display_name        = var.azuread_app_display_name_nonprod
+  azuread_app_secret_display_name = var.azuread_app_secret_display_name
+  azuread_app_secret_end_date     = var.azuread_app_secret_end_date
+  redirect_uris                   = var.azuread_app_redirect_uris_nonprod
+}
+
+#----------------------------------------------
+# prod environment
+# Create azure ad appilication
+#----------------------------------------------
+module "azuread_application_prod" {
+  source                          = "./modules/azure-ad/application"
+  azuread_client_id               = var.azuread_client_id
+  azuread_client_secret           = var.azuread_client_secret
+  azuread_tenant_id               = var.azuread_tenant_id
+  azuread_app_display_name        = var.azuread_app_display_name_prod
+  azuread_app_secret_display_name = var.azuread_app_secret_display_name
+  azuread_app_secret_end_date     = var.azuread_app_secret_end_date
+  redirect_uris                   = var.azuread_app_redirect_uris_prod
 }
