@@ -122,7 +122,7 @@ module "azuread_application_nonprod" {
   azuread_app_display_name        = var.azuread_app_display_name_nonprod
   azuread_app_secret_display_name = var.azuread_app_secret_display_name
   azuread_app_secret_end_date     = var.azuread_app_secret_end_date
-  redirect_uris                   = var.azuread_app_redirect_uris_nonprod
+  azuread_app_redirect_uris       = var.azuread_app_redirect_uris_nonprod
 }
 
 #----------------------------------------------
@@ -137,5 +137,5 @@ module "azuread_application_prod" {
   azuread_app_display_name        = var.azuread_app_display_name_prod
   azuread_app_secret_display_name = var.azuread_app_secret_display_name
   azuread_app_secret_end_date     = var.azuread_app_secret_end_date
-  redirect_uris                   = var.azuread_app_redirect_uris_prod
+  azuread_app_redirect_uris       = var.azuread_app_redirect_uris_prod
 }
