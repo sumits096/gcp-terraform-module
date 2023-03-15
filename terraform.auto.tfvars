@@ -63,14 +63,32 @@ gcp_peering_name   = "connector-msdynamics-vpc-mongodb"
 atlas_peering_name = "connector-msdynamics-vpc-gcp"
 atlas_cidr_block   = "192.168.192.0/8"
 
+# #----------------------------------------------
+# # Aure infrastructure
+# # Aure account variables
+# #----------------------------------------------
+# azure_client_id     = ""
+# azure_client_secret = ""
+# azure_tenant_id     = ""
+
+# # Azure application variables
+# azure_app_display_name = "ms-dynamics-test-app"
+# redirect_uris          = ["https://localhost:8081/", "https://localhost:8082/"]
+
 #----------------------------------------------
-# Aure infrastructure
-# Aure account variables
+# Azure infrastructure
+# Azure account variables
 #----------------------------------------------
-azure_client_id     = ""
-azure_client_secret = ""
-azure_tenant_id     = ""
+azuread_client_id     = ""
+azuread_client_secret = ""
+azuread_tenant_id     = ""
 
 # Azure application variables
-azure_app_display_name = "ms-dynamics-test-app"
-redirect_uris          = ["https://localhost:8081/", "https://localhost:8082/"]
+azuread_app_secret_display_name   = "client-secret"
+azuread_app_secret_end_date       = "2024-01-01T01:00:00Z"
+azuread_app_display_name_nonprod  = "msdynamics-application-nonprod"
+azuread_app_redirect_uris_nonprod = ["https://connector-msdynamics-ui-lp6zhuz2fa-uc.a.run.app/external-login/callback", "https://connector-msdynamics-ui-znn4wv6gea-uc.a.run.app/external-login/callback"]
+
+# Azure application variables for prod
+azuread_app_display_name_prod  = "msdynamics-application"
+azuread_app_redirect_uris_prod = ["https://connector-msdynamics-ui-pwgavvro5q-uc.a.run.app/external-login/callback"]
