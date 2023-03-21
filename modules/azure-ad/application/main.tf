@@ -83,7 +83,6 @@ resource "azuread_application" "main" {
 
 # Craete client secret for azure app
 resource "azuread_application_password" "secret" {
-  count                   = 0
   display_name          = var.azuread_app_secret_display_name
   application_object_id = azuread_application.main.id
   end_date              = var.azuread_app_secret_end_date
@@ -91,13 +90,11 @@ resource "azuread_application_password" "secret" {
 
 # Create a Service Principal for the App Registration (required)
 resource "azuread_service_principal" "user" {
-  count                   = 0
   application_id = azuread_application.main.application_id
 }
 
 # Gives admin consent on the User.Read permission.
 resource "azuread_service_principal_delegated_permission_grant" "main_msgraph" {
-  count                   = 0
   service_principal_object_id          = azuread_service_principal.user.object_id
   resource_service_principal_object_id = data.azuread_service_principal.msgraph.object_id
   claim_values                         = ["IMAP.AccessAsUser.All", "offline_access", "User.Read"]
@@ -105,7 +102,6 @@ resource "azuread_service_principal_delegated_permission_grant" "main_msgraph" {
 
 # Gives admin consent on the user_impersonation permission for d365.
 resource "azuread_service_principal_delegated_permission_grant" "main_dcrm" {
-  count                   = 0
   service_principal_object_id          = azuread_service_principal.user.object_id
   resource_service_principal_object_id = data.azuread_service_principal.dcrm.object_id
   claim_values                         = ["user_impersonation"]
