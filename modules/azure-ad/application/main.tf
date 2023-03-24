@@ -32,7 +32,7 @@ resource "azuread_application" "main" {
       admin_consent_description  = "Access the email as the user"
       admin_consent_display_name = "Access"
       enabled                    = true
-      id                         = "652390e4-393a-48de-9484-05f9b1212954""
+      id                         = "652390e4-393a-48de-9484-05f9b1212954"
       type                       = "User"
       user_consent_description   = "Access the email as the user"
       user_consent_display_name  = "Access"
