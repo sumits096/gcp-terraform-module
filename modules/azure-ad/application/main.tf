@@ -32,7 +32,7 @@ resource "azuread_application" "main" {
       admin_consent_description  = "Access the email as the user"
       admin_consent_display_name = "Access"
       enabled                    = true
-      id                         = "652390e4-893a-48de-9484-05f9b1212954"
+      id                         = "652390e4-393a-48de-9484-05f9b1212954""
       type                       = "User"
       user_consent_description   = "Access the email as the user"
       user_consent_display_name  = "Access"
@@ -43,7 +43,7 @@ resource "azuread_application" "main" {
       admin_consent_description  = "Maintain access to data"
       admin_consent_display_name = "Maintain"
       enabled                    = true
-      id                         = "7427e0e9-2fba-34fe-b0c0-848c9e6a8182"
+      id                         = "7427e0e9-2fba-42fe-b0c0-848c9e6a8182"
       type                       = "User"
       user_consent_description   = "Maintain access to data"
       user_consent_display_name  = "Maintain"
